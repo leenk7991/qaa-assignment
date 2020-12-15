@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  atypon-mysql-db:
+    image: mysql:8.0
+    container_name: atypon-learning-container
+    network_mode: bridge
+    environment:
+      MYSQL_DATABASE: atypon-webapp-mysql
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    expose:
+      - 3308
+    ports:
+      - 3308:3306
+    volumes:
+      - ~/ore-docker-volumes/atypon/data/mysql-db:/var/lib/mysql
+    restart: unless-stopped
