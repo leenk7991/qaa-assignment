@@ -1,0 +1,26 @@
+[
+  {
+    "name": "War and Peace",
+    "year": "1867",
+    "author_id": 1,
+    "category": "LITERARY_REALISM"
+  },
+  {
+    "name": "The Grapes of Wrath",
+    "year": "1939",
+    "author_id": 1,
+    "category": "DRAMA"
+  },
+  {
+    "name": "The Murderess",
+    "year": "1903",
+    "author_id": 3,
+    "category": "DRAMA"
+  },
+  {
+    "name": "Captain Michalis",
+    "year": "1950",
+    "author_id": 4,
+    "category": "DRAMA"
+  }
+]
