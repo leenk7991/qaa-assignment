@@ -22,6 +22,7 @@ public class TestContext {
   private void setPageObjectMap() {
     pageObjectMap.setPage(PageObjects.HOME, pageManager.getHomePage());
     pageObjectMap.setPage(PageObjects.BOOKS, pageManager.getBooksPage());
+    pageObjectMap.setPage(PageObjects.EDIT_BOOK, pageManager.getEditBookPage());
   }
 
   public WebDriverManager getWebDriverManager() {

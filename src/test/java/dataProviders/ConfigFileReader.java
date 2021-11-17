@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigFileReader {
-  private final String propertyFilePath = "/src/test/resources/configs/config.properties";
+  private final String propertyFilePath = "src/test/resources/configs/config.properties";
   private final Properties properties;
 
   public ConfigFileReader() {
@@ -58,5 +58,11 @@ public class ConfigFileReader {
     else
       throw new RuntimeException(
           "Test Data Resource Path not specified in the Configuration.properties file for the Key:testDataResourcePath");
+  }
+
+  public long getWebDriverWait() {
+    String webDriverWait = properties.getProperty("webdriver_wait");
+    if (webDriverWait != null) return Long.parseLong(webDriverWait);
+    else throw new RuntimeException("webdriver_wait not specified in the config.properties file.");
   }
 }

@@ -120,9 +120,4 @@ public class HomePage extends BasePage {
         clickOn_SideAuthorsLink();
     }
   }
-
-  @Override
-  public void navigateToPage() {
-    driver.get(url);
-  }
 }

@@ -32,6 +32,7 @@ public class WebDriverManager {
   private WebDriver createRemoteDriver() {
     try {
       driver = new RemoteWebDriver(new URL(remoteDriverUrl), createChromeOptions());
+      driver.get("http://www.google.com");
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
@@ -40,7 +41,7 @@ public class WebDriverManager {
   }
 
   private WebDriver createLocalDriver() {
-    throw new RuntimeException("RemoteWebDriver is not yet implemented");
+    throw new RuntimeException("createLocalDriver is not yet implemented");
   }
 
   private ChromeOptions createChromeOptions() {
