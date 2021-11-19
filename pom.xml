@@ -32,17 +32,35 @@
     </dependency>
 
     <!-- Testing -->
+
+    <dependency>
+      <artifactId>selenium-support</artifactId>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>selenium-java</artifactId>
+      <exclusions> <!-- Due to security issues e.g CWE-119 Improper Restriction of Operations within the Bounds of a Memory Buffer -->
+        <exclusion>
+          <artifactId>selenium-opera-driver</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <scope>test</scope>
+      <version>${selenium.version}</version>
+    </dependency>
+
     <dependency>
       <artifactId>cucumber-java</artifactId>
       <groupId>io.cucumber</groupId>
       <scope>test</scope>
       <version>7.0.0</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>selenium-java</artifactId>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <version>4.0.0</version>
     </dependency>
 
     <dependency>
@@ -142,6 +160,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.version>3.8.1</maven.compiler.version>
+    <selenium.version>4.0.0</selenium.version>
   </properties>
   <version>0.0.1-SNAPSHOT</version>
 </project>

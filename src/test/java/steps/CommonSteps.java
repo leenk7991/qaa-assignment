@@ -28,8 +28,8 @@ public class CommonSteps {
 
   @When("^(?i)the user navigate to (.+)$")
   public BasePage navigate_to_page(String pageName) {
-    //    currentPage = change_page_object(pageName);
-    //    currentPage.navigateToPage();
+    currentPage = change_page_object(pageName);
+    currentPage.navigateToPage();
     System.out.println("here");
     return currentPage;
   }
