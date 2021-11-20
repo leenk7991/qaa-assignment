@@ -38,12 +38,12 @@ public class BooksPageSteps {
 
   @When("^(?i)the user clicks on Edit Book for the given book$")
   public void click_on_edit_book() {
-    booksPage.clickOn_EditBook(booksPage.getRowByBookName(book.name));
+    booksPage.clickOn_EditBook(booksPage.getRowByBookName(book.title));
   }
 
   @When("^(?i)the user clicks on delete Book for the given book$")
   public void click_on_delete_book() {
-    booksPage.clickOn_DeleteBook(booksPage.getRowByBookName(book.name));
+    booksPage.clickOn_DeleteBook(booksPage.getRowByBookName(book.title));
   }
 
   @Then("^the edited book should be displayed with$")
@@ -61,6 +61,6 @@ public class BooksPageSteps {
   @Then("^the book should be deleted")
   public void assert_book_is_deleted() {
     booksPage.assertRowDeleted();
-    booksPage.assertBookDoesNotExist(book.name);
+    booksPage.assertBookDoesNotExist(book.title);
   }
 }

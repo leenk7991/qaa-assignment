@@ -1,26 +1,58 @@
 [
   {
-    "name": "War and Peace",
+    "id": 1,
+    "title": "War and Peace",
     "year": "1867",
-    "author_id": 1,
+    "authorId": 1,
     "category": "LITERARY_REALISM"
   },
   {
-    "name": "The Grapes of Wrath",
+    "id": 2,
+    "title": "The Grapes of Wrath",
     "year": "1939",
-    "author_id": 1,
+    "authorId": 2,
     "category": "DRAMA"
   },
   {
-    "name": "The Murderess",
+    "id": 3,
+    "title": "The Murderess",
     "year": "1903",
-    "author_id": 3,
+    "authorId": 3,
     "category": "DRAMA"
   },
   {
-    "name": "Captain Michalis",
+    "id": 4,
+    "title": "Captain Michalis",
     "year": "1950",
-    "author_id": 4,
+    "authorId": 4,
+    "category": "DRAMA"
+  },
+  {
+    "id": 5,
+    "title": "Report to Greco",
+    "year": "1965",
+    "authorId": 4,
+    "category": "DRAMA"
+  },
+  {
+    "id": 6,
+    "title": "The Last Temptation",
+    "year": "1960",
+    "authorId": 4,
+    "category": "DRAMA"
+  },
+  {
+    "id": 7,
+    "title": "Christ Recrucified",
+    "year": "1954",
+    "authorId": 4,
+    "category": "DRAMA"
+  },
+  {
+    "id": 8,
+    "title": "Princess Isambo",
+    "year": "1945",
+    "authorId": 5,
     "category": "DRAMA"
   }
 ]

@@ -20,44 +20,44 @@ Feature: [REGRESSION] Books
     Books
     """
 #
-#  Scenario: User edits a book entry
-#    Given the user is on the Books Page
-#    And a Book Entry
-#    When the user clicks on Edit Book for the given book
-#    Then the user should be redirected to the Edit Book Page
-#    And the page header should be displayed with text
-#    """
-#    Edit Book
-#    """
-#    When the user enters "edited book" for title input
-#    And the user enters "2020" for year input
-#    And the user clicks the save button
-#    Then the user should be redirected to the Books page
-#    And the edited book should be displayed with
-#      | Title       | Year |
-#      | edited book | 2020 |
-#
-#  Scenario: User deletes a book
-#    Given the user is on the Books Page
-#    And a Book Entry
-#    When the user clicks on Delete Book for the given book
-#    Then the book should be deleted
-#
-#  Scenario: User creates a book
-#    Given the user is on the Books Page
-#    When the user clicks on Create Book Button
-#    Then the user should be redirected to the Create Book Page
-#    And the page header should be displayed with text
-#    """
-#    Create Book
-#    """
-#    When the user enters "new book" for the title input
-#    And the user enters "2021" for the year input
-#    And the user clicks the Save button
-#    Then the user should be redirected to the Books Page
-#    And the new book should be displayed with
-#      | Title    | Year |
-#      | new book | 2020 |
+  Scenario: User edits a book entry
+    Given the user is on the Books Page
+    And a Book Entry
+    When the user clicks on Edit Book for the given book
+    Then the user should be redirected to the Edit Book Page
+    And the page header should be displayed with text
+    """
+    Edit Book
+    """
+    When the user enters "edited book" for title input
+    And the user enters "2020" for year input
+    And the user clicks the save button
+    Then the user should be redirected to the Books page
+    And the edited book should be displayed with
+      | Title       | Year |
+      | edited book | 2020 |
+
+  Scenario: User deletes a book
+    Given the user is on the Books Page
+    And a Book Entry
+    When the user clicks on Delete Book for the given book
+    Then the book should be deleted
+
+  Scenario: User creates a book
+    Given the user is on the Books Page
+    When the user clicks on Create Book Button
+    Then the user should be redirected to the Create Book Page
+    And the page header should be displayed with text
+    """
+    Create Book
+    """
+    When the user enters "new book" for the title input
+    And the user enters "2021" for the year input
+    And the user clicks the Save button
+    Then the user should be redirected to the Books Page
+    And the new book should be displayed with
+      | Title    | Year |
+      | new book | 2020 |
 
 
 

@@ -1,14 +1,15 @@
 package dataProviders;
 
 import com.google.gson.Gson;
+import managers.FileReaderManager;
+import testDataTypes.Book;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import managers.FileReaderManager;
-import testDataTypes.Book;
 
 public class BookDataReader {
   private static int index = 0;
@@ -25,8 +26,8 @@ public class BookDataReader {
     BufferedReader bufferReader = null;
     try {
       bufferReader = new BufferedReader(new FileReader(bookFilePath));
-      Book[] customers = gson.fromJson(bufferReader, Book[].class);
-      return Arrays.asList(customers);
+      Book[] books = gson.fromJson(bufferReader, Book[].class);
+      return Arrays.asList(books);
     } catch (FileNotFoundException e) {
       throw new RuntimeException("Json file not found at path : " + bookFilePath);
     } finally {
@@ -38,7 +39,11 @@ public class BookDataReader {
   }
 
   public Book getBookByName(String name) {
-    return bookList.stream().filter(x -> x.name.equalsIgnoreCase(name)).findAny().get();
+    return bookList.stream().filter(x -> x.title.equalsIgnoreCase(name)).findAny().get();
+  }
+
+  public Book getBookById(int id) {
+    return bookList.stream().filter(x -> x.id == id).findAny().get();
   }
 
   public Book getBook() {
@@ -50,5 +55,13 @@ public class BookDataReader {
     } catch (IndexOutOfBoundsException e) {
       throw new RuntimeException("Book list is empty");
     }
+  }
+
+  public Book getLast() {
+    return bookList.get(bookList.size() - 1);
+  }
+
+  public List<Book> getAllBooks() {
+    return bookList;
   }
 }

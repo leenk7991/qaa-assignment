@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,7 +22,10 @@ public abstract class BasePage {
 
   public BasePage(WebDriver driver) {
     this.driver = driver;
-    PageFactory.initElements(driver, this);
+    PageFactory.initElements(
+        new AjaxElementLocatorFactory(
+            driver, (int) FileReaderManager.getInstance().getConfigReader().getWebDriverWait()),
+        this.getClass());
     wait =
         new WebDriverWait(
             this.driver,
