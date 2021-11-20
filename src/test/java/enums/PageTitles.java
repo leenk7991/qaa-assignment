@@ -4,8 +4,8 @@ public enum PageTitles {
   HOME("Home"),
   BOOKS("Books"),
   AUTHORS("Authors"),
-  EDIT_BOOK("Books Edit");
-
+  EDIT_BOOK("Books Edit"),
+  CREATE_BOOK("Create Book");
   private String title = "";
 
   PageTitles(String title) {

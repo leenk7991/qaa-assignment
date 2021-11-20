@@ -1,8 +1,7 @@
 package pages;
 
+import enums.PageTitles;
 import enums.Urls;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import managers.FileReaderManager;
 import org.apache.commons.text.CaseUtils;
 import org.junit.Assert;
@@ -12,17 +11,44 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public abstract class BasePage {
-  protected WebDriver driver;
-  protected WebDriverWait wait;
-  protected String url = Urls.LOCAL.getUrl();
+  protected static WebDriver driver;
+  protected static String url = Urls.LOCAL.getUrl();
+  protected static String title = PageTitles.HOME.getTitle();
+  protected static WebDriverWait wait;
 
   public BasePage(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(driver, this);
     wait =
         new WebDriverWait(
-            this.driver, FileReaderManager.getInstance().getConfigReader().getWebDriverWait());
+            this.driver,
+            Duration.ofSeconds(
+                FileReaderManager.getInstance().getConfigReader().getWebDriverWait()));
+    printPageInfo();
+  }
+
+  public static void printPageInfo() {
+    System.out.println("url: " + url);
+    System.out.println("title: " + title);
+  }
+
+  public void navigateToPage(String url) {
+    driver.get(url);
+  }
+
+  public void navigateToPage() {
+    driver.get(getUrl());
+  }
+
+  public String getUrl() {
+    return this.url;
+  }
+
+  public String getTitle() {
+    return this.title;
   }
 
   public WebElement getElement(String elementName) {
@@ -31,21 +57,20 @@ public abstract class BasePage {
       return (WebElement) this.getClass().getField(elementName).get(this);
     } catch (NoSuchFieldException | IllegalAccessException e) {
       throw new RuntimeException(
-          "Could nor find element: " + elementName + "in page: " + this.toString());
+          "Could not find element: " + elementName + " in page: " + this.toString());
     }
   }
 
   public void assertUrl() {
-    String currentUrl = driver.getCurrentUrl();
-    Pattern pattern = Pattern.compile(url);
-    Matcher matcher = pattern.matcher(currentUrl);
-    Assert.assertTrue(matcher.find());
+    Assert.assertTrue(wait.until(ExpectedConditions.urlMatches(url)));
   }
 
-  public abstract void assertPageTitle();
+  public void assertUrl(String url) {
+    Assert.assertTrue(wait.until(ExpectedConditions.urlMatches(url)));
+  }
 
-  public void navigateToPage() {
-    driver.get(url);
+  public void assertPageTitle(String title) {
+    Assert.assertTrue(wait.until(ExpectedConditions.titleContains(title)));
   }
 
   public WebElement assertElementDisplayed(String elementName) {

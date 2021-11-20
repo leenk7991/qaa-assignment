@@ -16,13 +16,13 @@ public class TestContext {
     pageManager = new PageManager(webDriverManager.getDriver());
     scenarioContext = new ScenarioContext();
     pageObjectMap = PageObjectMap.getInstance();
-    setPageObjectMap();
   }
 
-  private void setPageObjectMap() {
+  public void setPageObjectMap() {
     pageObjectMap.setPage(PageObjects.HOME, pageManager.getHomePage());
     pageObjectMap.setPage(PageObjects.BOOKS, pageManager.getBooksPage());
     pageObjectMap.setPage(PageObjects.EDIT_BOOK, pageManager.getEditBookPage());
+    pageObjectMap.setPage(PageObjects.CREATE_BOOK, pageManager.getCreateBookPage());
   }
 
   public WebDriverManager getWebDriverManager() {

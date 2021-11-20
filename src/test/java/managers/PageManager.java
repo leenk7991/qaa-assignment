@@ -1,17 +1,16 @@
 package managers;
 
-import java.lang.reflect.InvocationTargetException;
 import org.openqa.selenium.WebDriver;
-import pages.BasePage;
-import pages.BooksPage;
-import pages.EditBookPage;
-import pages.HomePage;
+import pages.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class PageManager {
   WebDriver driver;
   private HomePage homePage;
   private BooksPage booksPage;
   private EditBookPage editBookPage;
+  private CreateBookPage createBookPage;
 
   public PageManager(WebDriver driver) {
     this.driver = driver;
@@ -40,5 +39,9 @@ public class PageManager {
 
   public EditBookPage getEditBookPage() {
     return (editBookPage == null) ? editBookPage = new EditBookPage(driver) : editBookPage;
+  }
+
+  public CreateBookPage getCreateBookPage() {
+    return (createBookPage == null) ? createBookPage = new CreateBookPage(driver) : createBookPage;
   }
 }

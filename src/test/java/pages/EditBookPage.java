@@ -7,19 +7,24 @@ import org.openqa.selenium.support.FindBy;
 
 public class EditBookPage extends BooksPage {
 
-  static String title = PageTitles.EDIT_BOOK.getTitle();
-  static String url = "^books/\\d+/edit$";
-
+  private static String title = PageTitles.EDIT_BOOK.getTitle();
+  private static String url = "^books/\\d+/edit$";
   @FindBy(id = "title")
-  WebElement titleInput;
-
+  protected WebElement titleInput;
   @FindBy(id = "year")
-  WebElement yearInput;
-
+  protected WebElement yearInput;
   @FindBy(xpath = "//button[text()=\"Save\"]")
-  WebElement saveButton;
+  protected WebElement saveButton;
 
   public EditBookPage(WebDriver driver) {
     super(driver);
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public String getTitle() {
+    return title;
   }
 }

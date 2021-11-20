@@ -1,5 +1,7 @@
 package dataProviders;
 
+import enums.EnvironmentType;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,12 +36,6 @@ public class ConfigFileReader {
       throw new RuntimeException("remote_driver_url not specified in the config.properties file.");
   }
 
-  public long getImplicitWait() {
-    String implicitWait = properties.getProperty("implicit_wait");
-    if (implicitWait != null) return Long.parseLong(implicitWait);
-    else throw new RuntimeException("implicit_wait not specified in the config.properties file.");
-  }
-
   public String getAppUrl() {
     String appUrl = properties.getProperty("app_url");
     if (appUrl != null) return appUrl;
@@ -64,5 +60,16 @@ public class ConfigFileReader {
     String webDriverWait = properties.getProperty("webdriver_wait");
     if (webDriverWait != null) return Long.parseLong(webDriverWait);
     else throw new RuntimeException("webdriver_wait not specified in the config.properties file.");
+  }
+
+  public EnvironmentType getEnvironment() {
+    String environmentName = properties.getProperty("environment");
+    if (environmentName == null || environmentName.equalsIgnoreCase("local"))
+      return EnvironmentType.LOCAL;
+    else if (environmentName.equals("remote")) return EnvironmentType.REMOTE;
+    else
+      throw new RuntimeException(
+          "Environment Type Key value in Configuration.properties is not matched : "
+              + environmentName);
   }
 }

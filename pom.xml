@@ -1,166 +1,166 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>spring-boot</artifactId>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
-        <groupId>org.apache.maven.plugins</groupId>
-        <version>${maven.compiler.version}</version>
-      </plugin>
-      <plugin>
-        <artifactId>spring-boot-maven-plugin</artifactId>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>spring-boot</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${maven.compiler.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.springframework.boot</groupId>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!-- FreeMarker Template -->
+        <dependency>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+        <!-- Web MVC -->
+        <dependency>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+
+        <!-- Testing -->
+
+        <dependency>
+            <artifactId>selenium-support</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>selenium-java</artifactId>
+            <exclusions> <!-- Due to security issues e.g CWE-119 Improper Restriction of Operations within the Bounds of a Memory Buffer -->
+                <exclusion>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                </exclusion>
+            </exclusions>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <scope>test</scope>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>cucumber-java</artifactId>
+            <groupId>io.cucumber</groupId>
+            <scope>test</scope>
+            <version>7.0.0</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>cucumber-junit</artifactId>
+            <groupId>io.cucumber</groupId>
+            <scope>test</scope>
+            <version>7.0.0</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <groupId>io.cucumber</groupId>
+            <scope>test</scope>
+            <version>7.0.0</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>gson</artifactId>
+            <groupId>com.google.code.gson</groupId>
+            <version>2.8.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <artifactId>commons-text</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <version>1.9</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit-vintage-engine</artifactId>
+                    <groupId>org.junit.vintage</groupId>
+                </exclusion>
+            </exclusions>
+            <groupId>org.springframework.boot</groupId>
+            <scope>test</scope>
+        </dependency>
+        <!-- String Data JPA -->
+        <dependency>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+        <!-- H2 in memory -->
+        <dependency>
+            <artifactId>h2</artifactId>
+            <groupId>com.h2database</groupId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- JDBC MySQL connector -->
+        <dependency>
+            <artifactId>mysql-connector-java</artifactId>
+            <groupId>mysql</groupId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Log4j API -->
+        <dependency>
+            <artifactId>log4j-api</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <!-- Log4j Core -->
+        <dependency>
+            <artifactId>log4j-core</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+    </dependencies>
+    <description>Spring core and configuration examples</description>
+    <groupId>com.javadevsguide.springframewor</groupId>
+    <modelVersion>4.0.0</modelVersion>
+    <name>spring-boot</name>
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <!-- FreeMarker Template -->
-    <dependency>
-      <artifactId>spring-boot-starter-freemarker</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <!-- Web MVC -->
-    <dependency>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-
-    <!-- Testing -->
-
-    <dependency>
-      <artifactId>selenium-support</artifactId>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <version>${selenium.version}</version>
-    </dependency>
-    <dependency>
-      <artifactId>selenium-java</artifactId>
-      <exclusions> <!-- Due to security issues e.g CWE-119 Improper Restriction of Operations within the Bounds of a Memory Buffer -->
-        <exclusion>
-          <artifactId>selenium-opera-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
-        </exclusion>
-      </exclusions>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <version>${selenium.version}</version>
-    </dependency>
-    <dependency>
-      <artifactId>selenium-chrome-driver</artifactId>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <scope>test</scope>
-      <version>${selenium.version}</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>cucumber-java</artifactId>
-      <groupId>io.cucumber</groupId>
-      <scope>test</scope>
-      <version>7.0.0</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>cucumber-junit</artifactId>
-      <groupId>io.cucumber</groupId>
-      <scope>test</scope>
-      <version>7.0.0</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>cucumber-picocontainer</artifactId>
-      <groupId>io.cucumber</groupId>
-      <scope>test</scope>
-      <version>7.0.0</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>gson</artifactId>
-      <groupId>com.google.code.gson</groupId>
-      <version>2.8.9</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>junit</artifactId>
-      <groupId>junit</groupId>
-      <scope>test</scope>
-      <version>4.13.2</version>
-    </dependency>
-
-
-    <dependency>
-      <artifactId>commons-text</artifactId>
-      <groupId>org.apache.commons</groupId>
-      <version>1.9</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>junit-vintage-engine</artifactId>
-          <groupId>org.junit.vintage</groupId>
-        </exclusion>
-      </exclusions>
-      <groupId>org.springframework.boot</groupId>
-      <scope>test</scope>
-    </dependency>
-    <!-- String Data JPA -->
-    <dependency>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <!-- H2 in memory -->
-    <dependency>
-      <artifactId>h2</artifactId>
-      <groupId>com.h2database</groupId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- JDBC MySQL connector -->
-    <dependency>
-      <artifactId>mysql-connector-java</artifactId>
-      <groupId>mysql</groupId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- Log4j API -->
-    <dependency>
-      <artifactId>log4j-api</artifactId>
-      <groupId>org.apache.logging.log4j</groupId>
-      <version>${log4j2.version}</version>
-    </dependency>
-
-    <!-- Log4j Core -->
-    <dependency>
-      <artifactId>log4j-core</artifactId>
-      <groupId>org.apache.logging.log4j</groupId>
-      <version>${log4j2.version}</version>
-    </dependency>
-
-  </dependencies>
-  <description>Spring core and configuration examples</description>
-  <groupId>com.javadevsguide.springframewor</groupId>
-  <modelVersion>4.0.0</modelVersion>
-  <name>spring-boot</name>
-  <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <relativePath/>
-    <version>2.2.5.RELEASE</version>
-    <!-- lookup parent from repository -->
-  </parent>
-  <properties>
-    <java.version>11</java.version>
-    <java.version>1.8</java.version>
-    <log4j2.version>2.11.2</log4j2.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.version>3.8.1</maven.compiler.version>
-    <selenium.version>4.0.0</selenium.version>
-  </properties>
-  <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
+        <version>2.2.5.RELEASE</version>
+        <!-- lookup parent from repository -->
+    </parent>
+    <properties>
+        <java.version>11</java.version>
+        <java.version>1.8</java.version>
+        <log4j2.version>2.11.2</log4j2.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <selenium.version>4.0.0</selenium.version>
+    </properties>
+    <version>0.0.1-SNAPSHOT</version>
 </project>

@@ -2,19 +2,22 @@ package pages;
 
 import enums.PageTitles;
 import enums.Urls;
-import java.util.List;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class BooksPage extends HomePage {
 
-  static String url = Urls.BOOKS.getUrl();
-  static String title = PageTitles.BOOKS.getTitle();
-  private final List<WebElement> bookRows;
+  private static List<WebElement> bookRows;
+  private static Boolean firstVisit = true;
+  private static String url = Urls.BOOKS.getUrl();
+  private static String title = PageTitles.BOOKS.getTitle();
 
   @FindBy(xpath = "//h1[contains(@class, \"page-header\")]")
   protected WebElement pageHeader;
@@ -42,10 +45,21 @@ public class BooksPage extends HomePage {
 
   public BooksPage(WebDriver driver) {
     super(driver);
-    bookRows = getAllBookTableRows();
-    System.out.println("inside books page");
-    System.out.println(url);
-    System.out.println(title);
+  }
+
+  private static List<WebElement> getAllBookTableRows() {
+    return wait.until(
+        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table/tbody/tr")));
+  }
+
+  public void navigateToPage() {
+    navigateToPage(getUrl());
+  }
+
+  public void navigateToPage(String url) {
+    super.navigateToPage(url);
+    if (firstVisit) bookRows = getAllBookTableRows();
+    firstVisit = false;
   }
 
   public WebElement getRowByBookName(String bookName) {
@@ -142,7 +156,25 @@ public class BooksPage extends HomePage {
     Assert.assertEquals(null, getRowByBookName(bookName, getAllBookTableRows()));
   }
 
-  private List<WebElement> getAllBookTableRows() {
-    return driver.findElements(By.xpath("//table/tbody/tr"));
+  public void assertNewBookExists() {
+    Assert.assertTrue(bookRows.size() < getAllBookTableRows().size());
+  }
+
+  public void assertNewBookCreated(String bookName, String bookYear) {
+    assertNewBookExists();
+    assertBookExists(bookName, bookYear);
+  }
+
+  public void assertBookEdited(String bookName, String bookYear) {
+    Assert.assertEquals(bookRows.size(), getAllBookTableRows().size());
+    assertBookExists(bookName, bookYear);
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public String getTitle() {
+    return title;
   }
 }

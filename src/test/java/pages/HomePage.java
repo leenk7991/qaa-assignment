@@ -3,14 +3,17 @@ package pages;
 import enums.LinksText;
 import enums.PageTitles;
 import enums.Urls;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
+
+  private static String url = Urls.HOME.getUrl();
+  private static String title = PageTitles.HOME.getTitle();
 
   @FindBy(xpath = "//div[contains(text(), \"Hello \")]")
   protected WebElement greetingMessage;
@@ -34,37 +37,24 @@ public class HomePage extends BasePage {
   @FindBy(xpath = "//a[contains(@class, \"navbar-brand\")]")
   protected WebElement projectName;
 
-  private String url = Urls.HOME.getUrl();
-  private String title = PageTitles.HOME.getTitle();
-
   public HomePage(WebDriver driver) {
     super(driver);
-    System.out.println("inside home page");
-    System.out.println(url);
-    System.out.println(title);
   }
 
   protected String getLinkSelector(String name) {
-    return String.format("//a[@text()=%s]", name);
+    return String.format("//a[text()=\"%s\"]", name);
   }
 
   protected WebElement getTopNavLink(String name) {
-    return driver.findElement(By.xpath("//div[@id=\"navbar\"]" + getLinkSelector(name)));
+    return wait.until(
+        ExpectedConditions.elementToBeClickable(
+            By.xpath("//div[@id=\"navbar\"]" + getLinkSelector(name))));
   }
 
   protected WebElement getSideBarLink(String name) {
-    return driver.findElement(
-        By.xpath("//div[contains(@class, \"sidebar\")]" + getLinkSelector(name)));
-  }
-
-  @Override
-  public void assertUrl() {
-    Assert.assertEquals(url, driver.getCurrentUrl());
-  }
-
-  @Override
-  public void assertPageTitle() {
-    Assert.assertEquals(title, driver.getTitle());
+    return wait.until(
+        ExpectedConditions.elementToBeClickable(
+            By.xpath("//div[contains(@class, \"sidebar\")]" + getLinkSelector(name))));
   }
 
   public void clickOn_SideHomeLink() {

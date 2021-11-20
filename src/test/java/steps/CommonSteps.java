@@ -14,6 +14,7 @@ public class CommonSteps {
 
   public CommonSteps(TestContext context) {
     testContext = context;
+    currentPage = testContext.getPageManager().getHomePage();
   }
 
   public BasePage getCurrentPage() {
@@ -26,11 +27,18 @@ public class CommonSteps {
     return currentPage;
   }
 
-  @When("^(?i)the user navigate to (.+)$")
+  @When("^(?i)the user goes to the (.+) page$")
+  public void user_goes_to_page(String pageName) {
+    currentPage = navigate_through_navbar(pageName);
+    currentPage.navigateToPage();
+  }
+
+  @When("^(?i)the user navigates to (?:the )?(.+)$")
   public BasePage navigate_to_page(String pageName) {
     currentPage = change_page_object(pageName);
     currentPage.navigateToPage();
-    System.out.println("here");
+    testContext.getWebDriverManager().getDriver().get(currentPage.getUrl());
+    testContext.getWebDriverManager().getDriver().get(currentPage.getUrl());
     return currentPage;
   }
 
@@ -40,45 +48,45 @@ public class CommonSteps {
   }
 
   @When("^(?i)the user navigates to the (.+) page through the top navbar$")
-  public void navigate_through_navbar(String pageName) {
+  public BasePage navigate_through_navbar(String pageName) {
     HomePage homepage = (HomePage) currentPage;
     homepage.clickOn_TopNavLink(pageName);
-    change_page_object(pageName + " Page");
+    return change_page_object(pageName + " Page");
   }
 
   @When("^(?i)the user navigates to the (.+) page through the side navbar")
-  public void navigate_through_side_navbar(String pageName) {
+  public BasePage navigate_through_side_navbar(String pageName) {
     HomePage homepage = (HomePage) currentPage;
     homepage.clickOn_SideBarLink(pageName);
-    change_page_object(pageName + " Page");
+    return change_page_object(pageName + " Page");
   }
 
   @Then("^(?i)the user should be redirected to the (.+)$")
   public void assert_redirection(String pageName) {
     currentPage = change_page_object(pageName);
-    currentPage.assertUrl();
-    currentPage.assertPageTitle();
+    currentPage.assertUrl(currentPage.getUrl());
+    currentPage.assertPageTitle(currentPage.getTitle());
   }
 
-  @Then("^the page should display (?:the|a) (.+)$")
+  @Then("^the page should display (?:the |a )?(.+)$")
   public void assert_element_displayed(String elementName) {
     currentPage = getCurrentPage();
     currentPage.assertElementDisplayed(elementName);
   }
 
-  @When("^the user clicks (?:the|on) (.+)$")
+  @When("^the user clicks (?:the |on )?(.+)$")
   public void click_on_element(String elementName) {
     currentPage = getCurrentPage();
     currentPage.clickElement(elementName);
   }
 
-  @When("^the user enters \"(.+)\" for (.+)$")
+  @When("^the user enters \"(.+)\" for (?:the |a )?(.+)$")
   public void enter_text(String text, String elementName) {
     currentPage = getCurrentPage();
     currentPage.inputTextToElement(elementName, text);
   }
 
-  @Then("^the (.+) should be displayed with text$")
+  @Then("^(?:the|a) (.+) should be displayed with text$")
   public void assert_element_displayed_with_text(String elementName, String text) {
     currentPage = getCurrentPage();
     currentPage.assertElementDisplayedWithText(elementName, text);

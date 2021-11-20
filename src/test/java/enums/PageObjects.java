@@ -3,7 +3,8 @@ package enums;
 public enum PageObjects {
   HOME("Home Page"),
   BOOKS("Books Page"),
-  EDIT_BOOK("Edit Book Page");
+  EDIT_BOOK("Edit Book Page"),
+  CREATE_BOOK("Create Book Page");
   private String pageName = "";
 
   PageObjects(String pageName) {
